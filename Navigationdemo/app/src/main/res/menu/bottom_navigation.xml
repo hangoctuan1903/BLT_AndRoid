@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/nav_Home"
+    android:icon="@drawable/ic_baseline_home_24"
+    android:title="Home"/>
+
+    <item
+        android:id="@+id/nav_Quanli"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Quản Lí"/>
+    <item
+        android:id="@+id/nav_Dangtin"
+        android:icon="@drawable/ic_baseline_border_color_24"
+        android:title="Đăng tin"/>
+    <item
+        android:id="@+id/nav_thongbao"
+        android:icon="@drawable/ic_baseline_notification_important_24"
+        android:title="Thông báo"/>
+    <item
+        android:id="@+id/nav_Them"
+        android:icon="@drawable/ic_baseline_drag_handle_24"
+        android:title="Thêm"/>
+
+</menu>
