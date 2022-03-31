@@ -23,8 +23,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         myDBpassword = new MyDB(this);
-        editTextEmail = findViewById(R.id.email);
-        editTextPassword = findViewById(R.id.password);
+        editTextEmail = findViewById(R.id.Email);
+        editTextPassword = findViewById(R.id.Password);
         button_login = findViewById(R.id.login);
 
         button_login.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +56,19 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this, "Password Valid", Toast.LENGTH_SHORT).show();
         }
         Cursor res  = myDBpassword.login_user(email,password);
-        if (res.getCount()==1){
+        Boolean checkuserpass = myDBpassword.checkuserpassword(email,password);
+        if (checkuserpass == true){
             final Intent i = new Intent(Login.this,Home.class);
             startActivity(i);
         }else {
             Toast.makeText(this, "Invalid Account", Toast.LENGTH_SHORT).show();
         }
+//        if (res.getCount()==1){
+//
+//        }
+//        else {
+//            Toast.makeText(this, "Invalid Account", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     private boolean isEmailValid(String email){return email.contains("@");}

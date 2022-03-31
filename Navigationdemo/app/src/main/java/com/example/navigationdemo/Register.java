@@ -67,18 +67,37 @@ public class Register extends AppCompatActivity {
                 else if (password.isEmpty()){
                     Toast.makeText(Register.this, "Password Field Required!", Toast.LENGTH_SHORT).show();
                 }else {
-                    boolean isInserted = myDB.insertData(email,password);
-                    new SweetAlertDialog(Register.this,SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Massage")
-                            .setContentText("You are Registered")
-                            .setConfirmText("OK")
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    Intent i = new Intent(Register.this,Login.class);
-                                    startActivity(i);
-                                }
-                            }).show();
+                    Boolean checkuser = myDB.checkuser(email);
+                    if (checkuser == false) {
+                        Boolean insert = myDB.insertData(email,password);
+                        if (insert == true){
+                            boolean isInserted = myDB.insertData(email,password);
+                            new SweetAlertDialog(Register.this,SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Massage")
+                                    .setContentText("You are Registered")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            Intent i = new Intent(Register.this,Login.class);
+                                            startActivity(i);
+                                        }
+                                    }).show();
+                        }
+                    }else {
+                        boolean isInserted = myDB.insertData(email,password);
+                        new SweetAlertDialog(Register.this,SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Massage")
+                                .setContentText("User already exists!Please sign in")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        Intent i = new Intent(Register.this,Login.class);
+                                        startActivity(i);
+                                    }
+                                }).show();
+                    }
                 }
             }
         });

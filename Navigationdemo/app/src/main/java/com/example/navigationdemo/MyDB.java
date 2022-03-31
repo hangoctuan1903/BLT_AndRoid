@@ -47,5 +47,22 @@ public class MyDB extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from "+TABLE_NAME+" where EMAIL = '"+email+"'AND PASSWORD= '"+password+"'",null);
         return res;
     }
+    public boolean checkuser(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME+" where EMAIL = ?",new String[]{email});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean checkuserpassword(String email,String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME+" where EMAIL = ? AND PASSWORD= ? ",new String[]{email,password});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
 
 }
